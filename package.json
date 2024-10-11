@@ -12,7 +12,8 @@
     "biome:lint": "biome lint --write .",
     "biome:format": "biome format --write .",
     "biome:check": "biome check .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "prepublishOnly": "pnpm build"
   },
   "keywords": ["react", "referer", "parser"],
   "author": "Stevan Borus",
@@ -30,7 +31,6 @@
     "husky": "^9.1.6",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3",
-    "vite": "^5.4.8",
     "vitest": "^2.1.2"
   }
 }

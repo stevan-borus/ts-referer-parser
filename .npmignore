@@ -1,0 +1,33 @@
+# Source code
+src/
+
+# Configuration files
+.github/
+.gitignore
+.husky/
+package.json
+pnpm-lock.yaml
+tsconfig.json
+tsup.config.ts
+biome.json
+
+# Documentation files
+docs/
+*.md
+!README.md
+
+# Development tools
+node_modules/
+coverage/
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Additional exclusions
+*.test.ts
