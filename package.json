@@ -22,9 +22,6 @@
     "type": "git",
     "url": "https://github.com/stevan-borus/react-referer-parser.git"
   },
-  "dependencies": {
-    "js-yaml": "^4.1.0"
-  },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
     "@types/js-yaml": "^4.0.9",

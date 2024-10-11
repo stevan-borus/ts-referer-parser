@@ -1,32 +1,11 @@
-import { load } from 'js-yaml';
-import type { Medium, Referer, RefererData } from './types';
-
-let cachedRefererData: RefererData | null = null;
-let lastFetchTime = 0;
-let CACHE_DURATION = 24 * 60 * 60 * 1000;
-
-async function fetchAndParseRefererData(): Promise<RefererData> {
-  let response = await fetch(
-    'https://s3-eu-west-1.amazonaws.com/snowplow-hosted-assets/third-party/referer-parser/referers-latest.yaml',
-  );
-
-  let yamlText = await response.text();
-
-  return load(yamlText) as RefererData;
-}
+import type { Referer, RefererData } from './types';
+import refererData from './utils/latest-referers.json';
 
 export async function parse(
-  refererUrl: string,
+  refererUrl: string | null,
   pageUrl?: string,
   internalDomains: string[] = [],
 ): Promise<Referer> {
-  let currentTime = Date.now();
-
-  if (!cachedRefererData || currentTime - lastFetchTime > CACHE_DURATION) {
-    cachedRefererData = await fetchAndParseRefererData();
-    lastFetchTime = currentTime;
-  }
-
   if (!refererUrl) {
     return { medium: 'direct', referer: null, term: null };
   }
@@ -41,7 +20,7 @@ export async function parse(
     return { medium: 'internal', referer: null, term: null };
   }
 
-  let bestMatch = findBestMatch(refererParsed, cachedRefererData);
+  let bestMatch = findBestMatch(refererParsed, refererData as RefererData);
 
   return (
     bestMatch || {
@@ -103,8 +82,8 @@ function findBestMatch(refererParsed: URL, cachedRefererData: RefererData): Refe
   return null;
 }
 
-function findTerm(refererParsed: URL, parameters: string[]): string | null {
-  if (parameters.length === 0) {
+function findTerm(refererParsed: URL, parameters?: string[]): string | null {
+  if (!parameters || parameters.length === 0) {
     return null;
   }
 
