@@ -1,0 +1,36 @@
+{
+  "name": "react-referer-parser",
+  "version": "1.0.0",
+  "description": "A React-compatible referer parser library",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest",
+    "biome:lint": "biome lint --write .",
+    "biome:format": "biome format --write .",
+    "biome:check": "biome check .",
+    "prepare": "husky"
+  },
+  "keywords": ["react", "referer", "parser"],
+  "author": "Stevan Borus",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevan-borus/react-referer-parser.git"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.3",
+    "@types/js-yaml": "^4.0.9",
+    "husky": "^9.1.6",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.2"
+  }
+}
