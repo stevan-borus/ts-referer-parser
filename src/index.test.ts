@@ -79,7 +79,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.com/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });
@@ -88,7 +88,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.co.uk/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });
@@ -97,7 +97,7 @@ describe('parse function', () => {
     const result = await parse('http://www.bing.com/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'bing',
+      referer: 'Bing',
       term: 'test',
     });
   });
@@ -106,7 +106,7 @@ describe('parse function', () => {
     const result = await parse('http://search.yahoo.com/search?p=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'yahoo',
+      referer: 'Yahoo!',
       term: 'test',
     });
   });
@@ -115,7 +115,7 @@ describe('parse function', () => {
     const result = await parse('http://www.facebook.com/page');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'facebook',
+      referer: 'Facebook',
       term: null,
     });
   });
@@ -124,7 +124,7 @@ describe('parse function', () => {
     const result = await parse('http://t.co/abcde');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'twitter',
+      referer: 'Twitter',
       term: null,
     });
   });
@@ -133,7 +133,7 @@ describe('parse function', () => {
     const result = await parse('http://www.linkedin.com/share');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'linkedin',
+      referer: 'LinkedIn',
       term: null,
     });
   });
@@ -142,7 +142,7 @@ describe('parse function', () => {
     const result = await parse('http://lnkd.in/abcde');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'linkedin',
+      referer: 'LinkedIn',
       term: null,
     });
   });
@@ -151,7 +151,7 @@ describe('parse function', () => {
     const result = await parse('http://www.instagram.com/p/abcde');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'instagram',
+      referer: 'Instagram',
       term: null,
     });
   });
@@ -160,7 +160,7 @@ describe('parse function', () => {
     const result = await parse('http://www.pinterest.com/pin/abcde');
     expect(result).toEqual({
       medium: 'social',
-      referer: 'pinterest',
+      referer: 'Pinterest',
       term: null,
     });
   });
@@ -169,7 +169,7 @@ describe('parse function', () => {
     const result = await parse('http://mail.google.com/mail/u/0');
     expect(result).toEqual({
       medium: 'email',
-      referer: 'gmail',
+      referer: 'Gmail',
       term: null,
     });
   });
@@ -187,7 +187,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.com/');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: null,
     });
   });
@@ -196,7 +196,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.com/search?q=');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: null,
     });
   });
@@ -205,7 +205,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.com/search?q=test&hl=en');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });
@@ -221,7 +221,7 @@ describe('parse function', () => {
     const result = await parse('http://WWW.GOOGLE.COM/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });
@@ -230,7 +230,7 @@ describe('parse function', () => {
     const result = await parse('http://www.google.com:8080/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });
@@ -239,7 +239,7 @@ describe('parse function', () => {
     const result = await parse('http://user:pass@www.google.com/search?q=test');
     expect(result).toEqual({
       medium: 'search',
-      referer: 'google',
+      referer: 'Google',
       term: 'test',
     });
   });

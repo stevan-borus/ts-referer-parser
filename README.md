@@ -2,7 +2,7 @@
 
 A React-compatible referer parser library inspired by [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser).
 
-The implementation uses the shared 'database' of known referers found in [file](https://s3-eu-west-1.amazonaws.com/snowplow-hosted-assets/third-party/referer-parser/referers-latest.yaml) as it says in the [snowplow-referer-parser/referer-parser](https://github.com/snowplow-referer-parser/referer-parser) README.
+The implementation uses the shared 'database' of known referers found in [file](https://s3-eu-west-1.amazonaws.com/snowplow-hosted-assets/third-party/referer-parser/referers-latest.json) as it says in the [snowplow-referer-parser/referer-parser](https://github.com/snowplow-referer-parser/referer-parser) README.
 
 ## Installation
 
@@ -45,7 +45,7 @@ async function example() {
   );
   
   console.log("Search engine referral:", result);
-  // Output: Search engine referral: { medium: 'search', referer: 'google', term: 'gateway oracle cards denise linn' }
+  // Output: Search engine referral: { medium: 'search', referer: 'Google', term: 'gateway oracle cards denise linn' }
 }
 
 example();
