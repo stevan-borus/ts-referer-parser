@@ -81,7 +81,7 @@ The function automatically fetches and caches the latest referer data from Snowp
 This library uses Vitest for testing. To run the tests, use the following command:
 
 ```bash
-npm test
+pnpm test
 ```
 
 ## License
