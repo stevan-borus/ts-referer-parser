@@ -51,6 +51,28 @@ async function example() {
 example();
 ```
 
+### Extracting Referer
+
+To use this library effectively, you need to extract the referer URL. The method for doing this differs between client-side and server-side environments:
+
+```javascript
+let referer = '';
+
+if (typeof window !== 'undefined') {
+  // Client-side (browser) environment
+  referer = document.referrer;
+} else {
+  // Server-side environment
+  // Note: The exact method to get the referer may vary depending on your server setup
+  referer = request.headers.referer; // Example for Express.js
+}
+
+// Now you can use the referer with the parse function
+const result = await parse(referer, currentPageUrl);
+```
+
+Note: In a server-side environment, the method to access the referer may vary depending on your server setup and framework. The example above assumes an Express.js-like setup.
+
 ## API
 
 ### `parse(refererUrl: string, pageUrl?: string, internalDomains: string[] = []): Promise<Referer>`
