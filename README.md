@@ -1,6 +1,6 @@
-# React Referer Parser
+# TS Referer Parser
 
-A React-compatible referer parser library inspired by [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser).
+A TypeScript-based referer parser library inspired by [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser). This library can be used in any JavaScript or TypeScript project, including various frameworks like React, Vue, Angular, or Node.js applications.
 
 The implementation uses the shared 'database' of known referers found in [file](https://s3-eu-west-1.amazonaws.com/snowplow-hosted-assets/third-party/referer-parser/referers-latest.json) as it says in the [snowplow-referer-parser/referer-parser](https://github.com/snowplow-referer-parser/referer-parser) README.
 
@@ -9,21 +9,21 @@ The implementation uses the shared 'database' of known referers found in [file](
 To install the package:
 
 ```bash
-pnpm add react-referer-parser
+pnpm add ts-referer-parser
 ```
 
 If you're using npm or yarn, you can use their respective commands:
 
 ```bash
-npm install react-referer-parser
+npm install ts-referer-parser
 # or
-yarn add react-referer-parser
+yarn add ts-referer-parser
 ```
 
 ## Usage
 
 ```typescript
-import { parse } from "react-referer-parser";
+import { parse } from "ts-referer-parser";
 
 async function example() {
   let result = await parse("", "http://www.example.com/");
