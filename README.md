@@ -83,13 +83,10 @@ Parses the given referer URL and returns a Promise that resolves to a `Referer` 
 - `referer`: The name of the referer (e.g., 'google', 'facebook', 'twitter')
 - `term`: The search term used, if applicable (null otherwise)
 
-The function automatically fetches and caches the latest referer data from Snowplow's S3 bucket. The cache is valid for 24 hours to optimize performance.
-
 ## Features
 
 - Supports various search engines, social media platforms, and email providers
 - Handles internal referrals
-- Caches referer data for improved performance
 - Typescript support
 
 ## Project Structure
@@ -120,11 +117,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Acknowledgements
-
-- [Snowplow](https://github.com/snowplow/referer-parser) for the original referer-parser
-- [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser) for inspiration
-
 ## Development
 
 To set up the project for development:
@@ -135,3 +127,8 @@ To set up the project for development:
 4. Use `pnpm build` to build the project
 
 Note: While pnpm is the preferred package manager for this project, npm or yarn should work as well.
+
+## Acknowledgements
+
+- [Snowplow](https://github.com/snowplow/referer-parser) for the original referer-parser
+- [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser) for inspiration
