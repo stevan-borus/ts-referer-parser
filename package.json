@@ -1,11 +1,13 @@
 {
   "name": "ts-referer-parser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A typed referer parser library",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest",
@@ -15,7 +17,12 @@
     "prepare": "husky",
     "prepublishOnly": "pnpm build"
   },
-  "keywords": ["typescript", "referer", "referrer", "parser"],
+  "keywords": [
+    "typescript",
+    "referer",
+    "referrer",
+    "parser"
+  ],
   "author": "Stevan Borus",
   "license": "Apache-2.0",
   "repository": {
@@ -25,9 +32,9 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
     "@types/js-yaml": "^4.0.9",
-    "husky": "^9.1.6",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.3",
-    "vitest": "^2.1.2"
+    "husky": "^9.1.7",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   }
 }
