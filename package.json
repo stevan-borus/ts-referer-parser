@@ -30,13 +30,14 @@
     "url": "https://github.com/stevan-borus/ts-referer-parser.git"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.3",
+    "@biomejs/biome": "^1.9.4",
     "@types/js-yaml": "^4.0.9",
     "cross-spawn": "^7.0.6",
     "husky": "^9.1.7",
-    "tsup": "^8.3.5",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.11",
-    "vitest": "^2.1.8"
-  }
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.1.4"
+  },
+  "packageManager": "pnpm@10.5.0+sha256.e77bc3c5a9888f823fe061413f60ef02afad4b967c9b16b13458279473ba7d1c"
 }
