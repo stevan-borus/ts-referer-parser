@@ -45,7 +45,7 @@ function parseUrls(refererUrl: string, pageUrl?: string) {
     if (pageUrl) {
       pageParsed = new URL(pageUrl);
     }
-  } catch (e) {}
+  } catch (_e) {}
 
   return { refererParsed, pageParsed };
 }

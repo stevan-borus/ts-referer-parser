@@ -54,7 +54,7 @@ email:
 beforeEach(() => {
   vi.resetAllMocks();
 
-  global.fetch = vi.fn().mockResolvedValue({
+  globalThis.fetch = vi.fn().mockResolvedValue({
     text: vi.fn().mockResolvedValue(mockYaml),
   }) as unknown as typeof fetch;
 });
