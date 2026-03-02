@@ -1,11 +1,24 @@
 import type { Referer, RefererData } from './types';
 import refererData from './utils/latest-referers.json';
 
-export async function parse(
+let allDomains = Object.entries(refererData as RefererData)
+  .flatMap(([medium, mediumData]) =>
+    Object.entries(mediumData).flatMap(([source, sourceData]) =>
+      sourceData.domains.map((domain) => ({
+        medium,
+        referer: source,
+        domain,
+        parameters: sourceData.parameters,
+      })),
+    ),
+  )
+  .sort((a, b) => b.domain.length - a.domain.length);
+
+export function parse(
   refererUrl: string | null,
   pageUrl?: string,
   internalDomains: string[] = [],
-): Promise<Referer> {
+): Referer {
   if (!refererUrl) {
     return { medium: 'direct', referer: null, term: null };
   }
@@ -20,7 +33,7 @@ export async function parse(
     return { medium: 'internal', referer: null, term: null };
   }
 
-  let bestMatch = findBestMatch(refererParsed, refererData as RefererData);
+  let bestMatch = findBestMatch(refererParsed);
 
   return (
     bestMatch || {
@@ -57,20 +70,7 @@ function isInternalReferral(refererParsed: URL, pageParsed: URL | null, internal
   );
 }
 
-function findBestMatch(refererParsed: URL, cachedRefererData: RefererData): Referer | null {
-  let allDomains = Object.entries(cachedRefererData)
-    .flatMap(([medium, mediumData]) =>
-      Object.entries(mediumData).flatMap(([source, sourceData]) =>
-        sourceData.domains.map((domain) => ({
-          medium,
-          referer: source,
-          domain,
-          parameters: sourceData.parameters,
-        })),
-      ),
-    )
-    .sort((a, b) => b.domain.length - a.domain.length);
-
+function findBestMatch(refererParsed: URL): Referer | null {
   for (let { medium, referer, domain, parameters } of allDomains) {
     if (refererParsed.hostname.endsWith(domain)) {
       let term = findTerm(refererParsed, parameters);
