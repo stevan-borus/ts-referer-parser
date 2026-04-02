@@ -8,7 +8,7 @@ src/
 package.json
 pnpm-lock.yaml
 tsconfig.json
-tsup.config.ts
+tsdown.config.ts
 biome.json
 
 # Documentation files

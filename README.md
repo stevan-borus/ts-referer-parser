@@ -25,30 +25,26 @@ yarn add ts-referer-parser
 ```typescript
 import { parse } from "ts-referer-parser";
 
-async function example() {
-  let result = await parse("", "http://www.example.com/");
+let result = parse("", "http://www.example.com/");
 
-  console.log("Direct traffic:", result);
-  // Output: Direct traffic: { medium: 'direct', referer: null, term: null }
+console.log("Direct traffic:", result);
+// Output: Direct traffic: { medium: 'direct', referer: null, term: null }
 
-  result = await parse(
-    "https://www.facebook.com/",
-    "http://www.example.com/"
-  );
+result = parse(
+  "https://www.facebook.com/",
+  "http://www.example.com/"
+);
 
-  console.log("Social media referral:", result);
-  // Output: Social media referral: { medium: 'social', referer: 'facebook', term: null }
+console.log("Social media referral:", result);
+// Output: Social media referral: { medium: 'social', referer: 'Facebook', term: null }
 
-  result = await parse(
-    "http://www.google.com/search?q=gateway+oracle+cards+denise+linn&hl=en&client=safari",
-    "http://www.example.com/"
-  );
-  
-  console.log("Search engine referral:", result);
-  // Output: Search engine referral: { medium: 'search', referer: 'Google', term: 'gateway oracle cards denise linn' }
-}
+result = parse(
+  "http://www.google.com/search?q=gateway+oracle+cards+denise+linn&hl=en&client=safari",
+  "http://www.example.com/"
+);
 
-example();
+console.log("Search engine referral:", result);
+// Output: Search engine referral: { medium: 'search', referer: 'Google', term: 'gateway oracle cards denise linn' }
 ```
 
 ### Extracting Referer
@@ -68,16 +64,16 @@ if (typeof window !== 'undefined') {
 }
 
 // Now you can use the referer with the parse function
-const result = await parse(referer, currentPageUrl);
+const result = parse(referer, currentPageUrl);
 ```
 
 Note: In a server-side environment, the method to access the referer may vary depending on your server setup and framework. The example above assumes an Express.js-like setup.
 
 ## API
 
-### `parse(refererUrl: string, pageUrl?: string, internalDomains: string[] = []): Promise<Referer>`
+### `parse(refererUrl: string | null, pageUrl?: string, internalDomains: string[] = []): Referer`
 
-Parses the given referer URL and returns a Promise that resolves to a `Referer` object containing:
+Parses the given referer URL and returns a `Referer` object containing:
 
 - `medium`: The type of referer (e.g., 'search', 'social', 'unknown', 'internal', 'direct', 'invalid')
 - `referer`: The name of the referer (e.g., 'google', 'facebook', 'twitter')
