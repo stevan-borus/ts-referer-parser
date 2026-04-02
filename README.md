@@ -75,15 +75,16 @@ Note: In a server-side environment, the method to access the referer may vary de
 
 Parses the given referer URL and returns a `Referer` object containing:
 
-- `medium`: The type of referer (e.g., 'search', 'social', 'unknown', 'internal', 'direct', 'invalid')
-- `referer`: The name of the referer (e.g., 'google', 'facebook', 'twitter')
+- `medium`: The type of referer (e.g., 'search', 'social', 'chatbot', 'email', 'paid', 'unknown', 'internal', 'direct', 'invalid')
+- `referer`: The name of the referer (e.g., 'Google', 'Facebook', 'ChatGPT')
 - `term`: The search term used, if applicable (null otherwise)
 
 ## Features
 
-- Supports various search engines, social media platforms, and email providers
+- Supports 450+ sources across search engines, social media, email, paid ads, and AI chatbots
+- AI/chatbot detection: ChatGPT, Claude, Perplexity, Gemini, DeepSeek, Grok, Copilot, and more
 - Handles internal referrals
-- Typescript support
+- TypeScript support with full type inference
 
 ## Project Structure
 

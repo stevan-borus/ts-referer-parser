@@ -190,4 +190,67 @@ describe('parse function', () => {
     let result = parse('/path', 'http://www.example.com');
     expect(result).toEqual({ medium: 'internal', referer: null, term: null });
   });
+
+  // Chatbot/AI referrers
+  it('should correctly parse ChatGPT referral', () => {
+    let result = parse('https://chatgpt.com/');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'ChatGPT', term: null });
+  });
+
+  it('should correctly parse Claude referral', () => {
+    let result = parse('https://claude.ai/chat');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Claude.ai', term: null });
+  });
+
+  it('should correctly parse Perplexity referral', () => {
+    let result = parse('https://perplexity.ai/search?q=test');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Perplexity.ai', term: null });
+  });
+
+  it('should correctly parse Google Gemini referral', () => {
+    let result = parse('https://gemini.google.com/app');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Google Gemini', term: null });
+  });
+
+  it('should correctly parse DeepSeek referral', () => {
+    let result = parse('https://chat.deepseek.com/');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'DeepSeek', term: null });
+  });
+
+  it('should correctly parse Grok referral', () => {
+    let result = parse('https://grok.com/');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Grok', term: null });
+  });
+
+  it('should correctly parse Microsoft Copilot referral', () => {
+    let result = parse('https://copilot.microsoft.com/');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Microsoft Copilot', term: null });
+  });
+
+  it('should correctly parse Phind referral', () => {
+    let result = parse('https://phind.com/search');
+    expect(result).toEqual({ medium: 'chatbot', referer: 'Phind', term: null });
+  });
+
+  // New/updated social referrers
+  it('should correctly parse Bluesky referral', () => {
+    let result = parse('https://go.bsky.app/abc');
+    expect(result).toEqual({ medium: 'social', referer: 'Bluesky', term: null });
+  });
+
+  it('should correctly parse Mastodon referral', () => {
+    let result = parse('https://mastodon.social/@user/123');
+    expect(result).toEqual({ medium: 'social', referer: 'Mastodon', term: null });
+  });
+
+  it('should correctly parse Threads referral', () => {
+    let result = parse('https://threads.net/@user');
+    expect(result).toEqual({ medium: 'social', referer: 'Threads', term: null });
+  });
+
+  // Brave search
+  it('should correctly parse Brave Search', () => {
+    let result = parse('https://search.brave.com/search?q=test');
+    expect(result).toEqual({ medium: 'search', referer: 'Brave', term: 'test' });
+  });
 });
