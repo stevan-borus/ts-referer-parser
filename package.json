@@ -38,6 +38,9 @@
     "referrer",
     "parser"
   ],
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "author": "Stevan Borus",
   "license": "Apache-2.0",
   "repository": {
