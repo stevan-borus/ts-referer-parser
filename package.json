@@ -1,6 +1,6 @@
 {
   "name": "ts-referer-parser",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A typed referer parser library",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
