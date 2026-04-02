@@ -2,7 +2,7 @@
 
 A TypeScript-based referer parser library inspired by [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser). This library can be used in any JavaScript or TypeScript project, including various frameworks like React, Vue, Angular, or Node.js applications.
 
-The implementation uses the shared 'database' of known referers found in [file](https://s3-eu-west-1.amazonaws.com/snowplow-hosted-assets/third-party/referer-parser/referers-latest.json) as it says in the [snowplow-referer-parser/referer-parser](https://github.com/snowplow-referer-parser/referer-parser) README.
+The referer database is compiled from [snowplow-referer-parser](https://github.com/snowplow-referer-parser/referer-parser) and [Matomo's searchengine-and-social-list](https://github.com/matomo-org/searchengine-and-social-list), covering 450+ sources including AI chatbots, search engines, social networks, email providers, and paid advertising platforms.
 
 ## Installation
 
@@ -75,15 +75,16 @@ Note: In a server-side environment, the method to access the referer may vary de
 
 Parses the given referer URL and returns a `Referer` object containing:
 
-- `medium`: The type of referer (e.g., 'search', 'social', 'unknown', 'internal', 'direct', 'invalid')
-- `referer`: The name of the referer (e.g., 'google', 'facebook', 'twitter')
+- `medium`: The type of referer (e.g., 'search', 'social', 'chatbot', 'email', 'paid', 'unknown', 'internal', 'direct', 'invalid')
+- `referer`: The name of the referer (e.g., 'Google', 'Facebook', 'ChatGPT')
 - `term`: The search term used, if applicable (null otherwise)
 
 ## Features
 
-- Supports various search engines, social media platforms, and email providers
+- Supports 450+ sources across search engines, social media, email, paid ads, and AI chatbots
+- AI/chatbot detection: ChatGPT, Claude, Perplexity, Gemini, DeepSeek, Grok, Copilot, and more
 - Handles internal referrals
-- Typescript support
+- TypeScript support with full type inference
 
 ## Project Structure
 
@@ -126,5 +127,6 @@ Note: While pnpm is the preferred package manager for this project, npm or yarn 
 
 ## Acknowledgements
 
-- [Snowplow](https://github.com/snowplow/referer-parser) for the original referer-parser
+- [Snowplow referer-parser](https://github.com/snowplow-referer-parser/referer-parser) for the referer database
+- [Matomo searchengine-and-social-list](https://github.com/matomo-org/searchengine-and-social-list) for additional AI assistant and social media data
 - [nodejs-referer-parser](https://github.com/snowplow-referer-parser/nodejs-referer-parser) for inspiration
