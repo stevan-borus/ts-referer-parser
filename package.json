@@ -60,7 +60,8 @@
   "pnpm": {
     "overrides": {
       "esbuild": "^0.28.1",
-      "js-yaml@<4.2.0": "^4.2.0"
+      "js-yaml@<4.3.1": "^4.3.1",
+      "postcss@<8.5.23": "^8.5.23"
     }
   },
   "packageManager": "pnpm@10.5.0+sha256.e77bc3c5a9888f823fe061413f60ef02afad4b967c9b16b13458279473ba7d1c"
