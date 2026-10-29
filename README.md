@@ -79,6 +79,24 @@ Parses the given referer URL and returns a `Referer` object containing:
 - `referer`: The name of the referer (e.g., 'Google', 'Facebook', 'ChatGPT')
 - `term`: The search term used, if applicable (null otherwise)
 
+### Matching rules
+
+Matching starts with the full hostname, then checks each parent domain at a DNS label
+boundary. For example, `mobile.x.com` matches `x.com`; `netflix.com` does not.
+Hostnames are case-insensitive, and a trailing DNS root dot is ignored for source matching.
+
+At each hostname, matching path rules take priority over a hostname-only rule. Paths are
+case-sensitive and match whole segments: `/products` matches `/products/catalog`, but
+not `/products-fake`. A trailing slash in a rule is optional. Query strings and fragments
+do not participate in path matching; search terms still come from the matched rule's parameters.
+
+A more specific hostname wins before a parent hostname is considered. This preserves
+sources such as Gmail at `mail.google.com`. Explicit `www` aliases in the database let
+`www.google.com/imgres` match Google Images, while `www.google.com/search` still matches Google.
+
+When `pageUrl` is supplied, internal-referral detection runs before source matching
+and compares exact hosts, including ports.
+
 ## Features
 
 - Supports 450+ sources across search engines, social media, email, paid ads, and AI chatbots
