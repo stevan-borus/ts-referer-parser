@@ -1,18 +1,33 @@
 import type { Referer, RefererData } from './types';
 import refererData from './utils/latest-referers.json';
 
-let allDomains = Object.entries(refererData as RefererData)
-  .flatMap(([medium, mediumData]) =>
-    Object.entries(mediumData).flatMap(([source, sourceData]) =>
-      sourceData.domains.map((domain) => ({
-        medium,
-        referer: source,
-        domain,
-        parameters: sourceData.parameters,
-      })),
-    ),
-  )
-  .sort((a, b) => b.domain.length - a.domain.length);
+type Rule = { medium: string; referer: string; parameters?: string[] };
+type HostRules = { hostRule?: Rule; pathRules: { path: string; rule: Rule }[] };
+
+let rulesByHost = new Map<string, HostRules>();
+
+for (let [medium, mediumData] of Object.entries(refererData as RefererData)) {
+  for (let [referer, { domains, parameters }] of Object.entries(mediumData)) {
+    for (let domain of domains) {
+      let slash = domain.indexOf('/');
+      let host = normalizeHost(slash === -1 ? domain : domain.slice(0, slash));
+      let path = slash === -1 ? '' : domain.slice(slash).replace(/\/$/, '');
+      let rule = { medium, referer, parameters };
+      let entry = rulesByHost.get(host) ?? { pathRules: [] };
+
+      if (path) {
+        entry.pathRules.push({ path, rule });
+      } else {
+        entry.hostRule ??= rule;
+      }
+      rulesByHost.set(host, entry);
+    }
+  }
+}
+
+for (let entry of rulesByHost.values()) {
+  entry.pathRules.sort((a, b) => b.path.length - a.path.length);
+}
 
 export function parse(
   refererUrl: string | null,
@@ -71,15 +86,32 @@ function isInternalReferral(refererParsed: URL, pageParsed: URL | null, internal
 }
 
 function findBestMatch(refererParsed: URL): Referer | null {
-  for (let { medium, referer, domain, parameters } of allDomains) {
-    if (refererParsed.hostname.endsWith(domain)) {
-      let term = findTerm(refererParsed, parameters);
+  let labels = normalizeHost(refererParsed.hostname).split('.');
 
-      return { medium, referer, term };
+  for (let i = 0; i < labels.length; i++) {
+    let entry = rulesByHost.get(labels.slice(i).join('.'));
+    let rule =
+      entry?.pathRules.find(({ path }) => matchesPath(refererParsed.pathname, path))?.rule ??
+      entry?.hostRule;
+
+    if (rule) {
+      return {
+        medium: rule.medium,
+        referer: rule.referer,
+        term: findTerm(refererParsed, rule.parameters),
+      };
     }
   }
 
   return null;
+}
+
+function normalizeHost(host: string) {
+  return host.toLowerCase().replace(/\.$/, '');
+}
+
+function matchesPath(pathname: string, path: string) {
+  return pathname === path || pathname.startsWith(`${path}/`);
 }
 
 function findTerm(refererParsed: URL, parameters?: string[]): string | null {
