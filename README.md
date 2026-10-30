@@ -23,27 +23,24 @@ yarn add ts-referer-parser
 ## Usage
 
 ```typescript
-import { parse } from "ts-referer-parser";
+import { parse } from 'ts-referer-parser';
 
-let result = parse("", "http://www.example.com/");
+let result = parse('', 'http://www.example.com/');
 
-console.log("Direct traffic:", result);
+console.log('Direct traffic:', result);
 // Output: Direct traffic: { medium: 'direct', referer: null, term: null }
 
-result = parse(
-  "https://www.facebook.com/",
-  "http://www.example.com/"
-);
+result = parse('https://www.facebook.com/', 'http://www.example.com/');
 
-console.log("Social media referral:", result);
+console.log('Social media referral:', result);
 // Output: Social media referral: { medium: 'social', referer: 'Facebook', term: null }
 
 result = parse(
-  "http://www.google.com/search?q=gateway+oracle+cards+denise+linn&hl=en&client=safari",
-  "http://www.example.com/"
+  'http://www.google.com/search?q=gateway+oracle+cards+denise+linn&hl=en&client=safari',
+  'http://www.example.com/',
 );
 
-console.log("Search engine referral:", result);
+console.log('Search engine referral:', result);
 // Output: Search engine referral: { medium: 'search', referer: 'Google', term: 'gateway oracle cards denise linn' }
 ```
 
